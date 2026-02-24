@@ -68,24 +68,36 @@ public class Principal {
 //                .toList();
 
 //        dadosEpisodios.add(new DadosEpisodio("teste", 3,"10"," 2020-01-01"));
-        dadosEpisodios.stream()
-                .filter(e -> !e.avalicao().equals("N/A"))
-                .peek(e -> System.out.println("Primeiro filtro " + e))
-                .sorted(Comparator.comparing(DadosEpisodio::avalicao).reversed())
-                .peek(e -> System.out.println("Ordenação " + e))
-                .limit(10)
-                .peek(e -> System.out.println("limite " + e))
-                .map(e -> e.titulo().toUpperCase())
-                .peek(e -> System.out.println("Mapeamento " + e))
-                .forEach(System.out::println);
+//        dadosEpisodios.stream()
+//                .filter(e -> !e.avalicao().equals("N/A"))
+//                .peek(e -> System.out.println("Primeiro filtro " + e))
+//                .sorted(Comparator.comparing(DadosEpisodio::avalicao).reversed())
+//                .peek(e -> System.out.println("Ordenação " + e))
+//                .limit(10)
+//                .peek(e -> System.out.println("limite " + e))
+//                .map(e -> e.titulo().toUpperCase())
+//                .peek(e -> System.out.println("Mapeamento " + e))
+//                .forEach(System.out::println);
 
-//        List<Episodio> espisodios = temporadas.stream()
-//                .flatMap(t -> t.episodios().stream()
-//                        .map(d -> new Episodio(t.numero(), d))
-//                        ).collect(Collectors.toList());
-//
-//        espisodios.forEach(System.out::println);
-//
+        List<Episodio> episodios = temporadas.stream()
+                .flatMap(t -> t.episodios().stream()
+                        .map(d -> new Episodio(t.numero(), d))
+                        ).collect(Collectors.toList());
+
+        episodios.forEach(System.out::println);
+
+        System.out.println("Digite o nome do episodio: ");
+        var trechoTitulo = leitura.nextLine();
+        Optional<Episodio> episodioBuscado = episodios.stream()
+                .filter(e -> e.getTitulo().toUpperCase().contains(trechoTitulo.toUpperCase()))
+                .findFirst();
+        if(episodioBuscado.isPresent()){
+            System.out.println("Episodio encontrado");
+            System.out.println("Temporada " + episodioBuscado.get().getTemporada());
+        } else {
+            System.out.println("Episodio não encontrado");
+        }
+
 //        System.out.println("A partir de que ano voce deseja ver os episodios?");
 //        var ano = leitura.nextInt();
 //        leitura.nextLine();
