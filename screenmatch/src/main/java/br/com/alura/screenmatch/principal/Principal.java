@@ -7,6 +7,7 @@ import br.com.alura.screenmatch.model.Serie;
 import br.com.alura.screenmatch.repository.SerieRepository;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
+import org.aspectj.weaver.ast.Var;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -37,6 +38,7 @@ public class Principal {
                     2 - Buscar episódios
                     3 - Listar series buscadas
                     4 - Buscar série por titulo
+                    5 - Buscar séries por ator
                     
                     0 - Sair                                 
                     """;
@@ -57,6 +59,9 @@ public class Principal {
                     break;
                 case 4:
                     buscarSeriePorTitulo();
+                    break;
+                case 5:
+                    buscarSeriePorAtor();
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -130,6 +135,17 @@ public class Principal {
         } else {
             System.out.println("Série não encontrada");
         }
+    }
+
+    private void buscarSeriePorAtor() {
+        System.out.println("Digite o nome do ator para busca: ");
+        var nomeAtor = leitura.nextLine();
+        System.out.println("Avaliações a partir de que valor? ");
+        var avaliacao = leitura.nextDouble();
+        List<Serie> seriesEncotradas = repositorio.findByAtoresContainingIgnoreCaseAndAvaliacaoGreaterThanEqual(nomeAtor, avaliacao);
+        System.out.println("Series em que " + nomeAtor + " Trabalhou: ");
+        seriesEncotradas.forEach(s ->
+                System.out.println(s.getTitulo() + " avaliação: " + s.getAvaliacao()));
     }
 
 }
