@@ -47,20 +47,21 @@ Projeto ideal para quem está aprendendo Spring Boot, REST API, JPA, DTOs e boas
 ### ▶️ Passos
 
 1. Clone o repositório:
-
+```
     git clone https://github.com/Guilherme-Pelissari/Screen-Match.git  
     cd Screen-Match
+```
 
 2. Execute a aplicação:
-
+```
     ./mvnw spring-boot:run
-
+```
 Ou rode diretamente pela classe `ScreenMatchApplication` no IntelliJ IDEA.
 
 3. A API estará disponível em:
-
+```
     http://localhost:8080
-
+```
 ---
 
 ## 📌 Endpoints Principais
@@ -105,17 +106,17 @@ Este é um projeto de estudo. Contribuições são bem-vindas!
 
 1. Faça um fork do projeto  
 2. Crie uma branch:
-
+```
     git checkout -b feature/nova-funcionalidade
-
+```
 3. Commit:
-
+```
     git commit -m "Adiciona nova funcionalidade"
-
+```
 4. Push:
-
+```
     git push origin feature/nova-funcionalidade
-
+```
 5. Abra um Pull Request  
 
 ---
